@@ -31,6 +31,10 @@ chrome.tabs.onActivated.addListener(function(activeInfo){
     alert(activeInfo.tabId);
 });
 
+chrome.tabs.onRemoved.addListener(function(tabId){
+    alert(tabId);
+});
+
 chrome.tabs.query(
   { currentWindow: true, active: true },
   function (tabArray) {
