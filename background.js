@@ -37,11 +37,9 @@ function updateIcon(tabId) {
         markSet[tabId] = false;
     }
     if (markSet[tabId]){
-        chrome.browserAction.setIcon({path:"icon2.png"});
-        chrome.browserAction.setBadgeText({text: "set"});
+        chrome.browserAction.setIcon({path:"icon-marked.png"});
     }else{
-        chrome.browserAction.setIcon({path:"icon1.png"});
-        chrome.browserAction.setBadgeText({text: "none"});
+        chrome.browserAction.setIcon({path:"icon-unmarked.png"});
     }
 }
 
