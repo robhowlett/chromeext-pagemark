@@ -7,13 +7,14 @@ var scrollPos = 0;
 (function ($) {
     chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        if(scrollPos === 0){
+        alert(request.action);
+        if(request.action == "mark"){
             scrollPos = $(document).scrollTop();
-        }else{
+            sendResponse({result: true});
+        }else if(request.action == "jump"){
             $(document).scrollTop(scrollPos);
             scrollPos = 0;
+            sendResponse({result: true});
         }
-        if (request.greeting == "hello")
-            sendResponse({farewell: "goodbye"});
     });
 })(jQuery);

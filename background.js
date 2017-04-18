@@ -5,16 +5,31 @@
 var markSet = {};
 var currentTab = 0;
 
-function toggleValue(tabId) {
-    markSet[tabId] = !markSet[tabId];
+function markUnmark(tabId) {
+    if(markSet[tabId]){
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {action: "jump"}, function(response) {
+                if(response.result){
+                    markSet[tabId] = false;
+                }
+            });
+        });
+    }else{
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {action: "mark"}, function(response) {
+                if(response.result){
+                    markSet[tabId] = true;
+                }
+            });
+        });
+    }
+    updateIcon(tabId);
 }
 
 function updateIcon(tabId) {
-
     if(!(tabId in markSet)){
         markSet[tabId] = false;
     }
-
     if (markSet[tabId]){
         chrome.browserAction.setIcon({path:"icon2.png"});
         chrome.browserAction.setBadgeText({text: "set"});
@@ -26,13 +41,7 @@ function updateIcon(tabId) {
 
 //chrome.browserAction.setPopup({popup:"popup.html"});
 chrome.browserAction.onClicked.addListener(function(tab) {
-    toggleValue(tab.id);
-    updateIcon(tab.id);
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-            console.log(response.farewell);
-        });
-    });
+    markUnmark(tab.id);
 });
 
 chrome.tabs.onActivated.addListener(function(activeInfo){
