@@ -1,23 +1,30 @@
 var bgpage = chrome.extension.getBackgroundPage();
 // bgpage.someBackgroundPageFunction([SOME VARIABLE(S) FROM POPUP]).
 
-function set() {
-    bgpage.xalert('set');
-}
-function clear() {
-    bgpage.xalert('clear');
-}
-function jump() {
+function doAction(action) {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs){
-        bgpage.xalert('jump' + tabs[0].id);
+        if(action == "mark"){
+            bgpage.mark(tabs[0].id);
+        }else if(action == "clear"){
+            bgpage.clear(tabs[0].id);
+        }else if(action == "jump"){
+            bgpage.jump(tabs[0].id);
+        }else if(action == "jumpAndClear"){
+            bgpage.jumpAndClear(tabs[0].id);
+        }
+        window.close();
     });
-
-}
-function jumpAndClear() {
-    bgpage.xalert('jumpAndClear');
 }
 
-document.getElementById('set').addEventListener('click', set);
-document.getElementById('clear').addEventListener('click', clear);
-document.getElementById('jump').addEventListener('click', jump);
-document.getElementById('jumpAndClear').addEventListener('click', jumpAndClear);
+document.getElementById('mark').addEventListener('click', function(){
+    doAction('mark');
+});
+document.getElementById('clear').addEventListener('click', function(){
+    doAction('clear');
+});
+document.getElementById('jump').addEventListener('click', function(){
+    doAction('jump');
+});
+document.getElementById('jumpAndClear').addEventListener('click', function(){
+    doAction('jumpAndClear');
+});
