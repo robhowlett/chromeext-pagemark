@@ -1,10 +1,11 @@
 {
-  "name": "A browser action which changes its icon when clicked",
-  "description": "Change browser action color when its icon is clicked",
-  "version": "1.2",
+  "name": "PageMark",
+  "description": "Mark and find your position on the page",
+  "version": "0.1",
   "background": { "scripts": ["background.js"] },
   "browser_action": {
-      "name": "Click to change the icon's color"
+      "default_title": "PageMark",
+      "default_popup": "popup.html"
   },
   "content_scripts": [{
     "matches": ["<all_urls>"],
