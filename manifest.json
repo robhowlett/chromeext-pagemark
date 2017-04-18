@@ -10,5 +10,8 @@
     "matches": ["<all_urls>"],
     "js": ["jquery-2.1.3.min.js", "scroll-mark.js"]
   }],
+  "permissions": [
+    "tabs", "<all_urls>"
+  ],
   "manifest_version": 2
 }

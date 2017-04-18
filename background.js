@@ -39,7 +39,11 @@ function updateIcon(tabId) {
     }
 }
 
-//chrome.browserAction.setPopup({popup:"popup.html"});
+function xalert(xxx) {
+    alert(xxx);
+}
+
+chrome.browserAction.setPopup({popup:"popup.html"});
 chrome.browserAction.onClicked.addListener(function(tab) {
     markUnmark(tab.id);
 });
