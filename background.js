@@ -3,7 +3,19 @@
 // found in the LICENSE file.
 
 var markSet = {};
-var currentTab = 0;
+
+function set(){
+
+}
+function jump(){
+
+}
+function clear(){
+
+}
+function jumpAndClear(){
+
+}
 
 function markUnmark(tabId) {
     if(markSet[tabId]){
