@@ -1,7 +1,3 @@
-/**
-  * scroll-mark
-  */
-
 var scrollPos = 0;
 
 (function ($) {
