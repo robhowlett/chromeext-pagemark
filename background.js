@@ -58,7 +58,8 @@ chrome.tabs.onRemoved.addListener(function(tabId){
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if(typeof(changeInfo.url) != "undefined"){
-        alert(changeInfo.url);
+        delete markSet[tabId];
+        updateIcon(tabId);
     }
 });
 
