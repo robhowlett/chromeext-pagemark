@@ -4,6 +4,10 @@
 
 var markSet = {};
 
+function getMarkSet(tabId){
+    return markSet[tabId];
+}
+
 function mark(tabId){
     chrome.tabs.sendMessage(tabId, {action: "mark"}, function(response) {
         if(response.result){

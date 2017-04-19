@@ -1,6 +1,13 @@
 var bgpage = chrome.extension.getBackgroundPage();
 // bgpage.someBackgroundPageFunction([SOME VARIABLE(S) FROM POPUP]).
 
+chrome.tabs.query({ active: true, currentWindow: true }, function(tabs){
+    if(bgpage.getMarkSet(tabs[0].id) === false){
+        bgpage.mark(tabs[0].id);
+        window.close();
+    }
+});
+
 function doAction(action) {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs){
         if(action == "mark"){
