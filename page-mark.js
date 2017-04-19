@@ -1,4 +1,4 @@
-var scrollPos = 0;
+var scrollPos = -1;
 
 function unmark(){
     var markerDiv = document.getElementById('markerDiv');
@@ -8,8 +8,8 @@ function unmark(){
 (function ($) {
     chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        if(request.action == "mark" && $(document).scrollTop() !== 0){
-            if(scrollPos !== 0){
+        if(request.action == "mark"){
+            if(scrollPos !== -1){
                 unmark();
             }
 
@@ -31,7 +31,7 @@ function unmark(){
             $(document).scrollTop(scrollPos);
             sendResponse({result: true});
         }else if(request.action == "clear"){
-            scrollPos = 0;
+            scrollPos = -1;
             unmark();
             sendResponse({result: true});
         }
