@@ -1,9 +1,18 @@
 var scrollPos = 0;
 
+function unmark(){
+    var markerDiv = document.getElementById('markerDiv');
+    markerDiv.parentNode.removeChild(markerDiv);
+}
+
 (function ($) {
     chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        if(request.action == "mark"){
+        if(request.action == "mark" && $(document).scrollTop() !== 0){
+            if(scrollPos !== 0){
+                unmark();
+            }
+
             scrollPos = $(document).scrollTop();
 
             var div = document.createElement("div");
@@ -23,10 +32,7 @@ var scrollPos = 0;
             sendResponse({result: true});
         }else if(request.action == "clear"){
             scrollPos = 0;
-
-            var markerDiv = document.getElementById('markerDiv');
-            markerDiv.parentNode.removeChild(markerDiv);
-
+            unmark();
             sendResponse({result: true});
         }
     });
