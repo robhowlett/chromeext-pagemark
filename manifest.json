@@ -14,5 +14,28 @@
   "permissions": [
     "tabs", "<all_urls>"
   ],
+  "commands": {
+    "clear": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+5",
+        "mac": "Command+Shift+5"
+      },
+      "description": "Remove mark"
+    },
+    "mark": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1",
+        "mac": "Command+Shift+1"
+      },
+      "description": "Mark page"
+    },
+    "jump": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2",
+        "mac": "Command+Shift+2"
+      },
+      "description": "Jump to mark"
+    }
+  },
   "manifest_version": 2
 }

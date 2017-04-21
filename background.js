@@ -67,6 +67,18 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     }
 });
 
+chrome.commands.onCommand.addListener(function(command) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs){
+        if(command == "mark"){
+            mark(tabs[0].id);
+        }else if(command == "clear"){
+            clear(tabs[0].id);
+        }else if(command == "jump"){
+            jump(tabs[0].id);
+        }
+    });
+});
+
 chrome.tabs.query({currentWindow: true, active: true }, function (tabArray) {
     updateIcon(tabArray[0].id);
 });
